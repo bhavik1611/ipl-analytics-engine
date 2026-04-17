@@ -1,0 +1,35 @@
+{
+  "meta": { "data_version": "1.0.0", "created": "2026-01-01", "revision": 1 },
+  "info": {
+    "balls_per_over": 6,
+    "city": "Test City",
+    "dates": ["2019-04-01"],
+    "event": { "name": "Indian Premier League" },
+    "match_type": "T20",
+    "outcome": { "winner": "Team A" },
+    "overs": 20,
+    "player_of_match": ["Player Fallback"],
+    "teams": ["Team A", "Team B"],
+    "toss": { "decision": "bat", "winner": "Team A" },
+    "venue": "Test Venue"
+  },
+  "innings": [
+    {
+      "team": "Team A",
+      "overs": [
+        {
+          "over": 0,
+          "deliveries": [
+            {
+              "batter": "A1",
+              "bowler": "B1",
+              "non_striker": "A2",
+              "runs": { "batter": 0, "extras": 0, "total": 0 }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

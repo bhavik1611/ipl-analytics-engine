@@ -1,0 +1,165 @@
+{
+  "meta": { "data_version": "1.0.0", "created": "2026-01-01", "revision": 1 },
+  "info": {
+    "balls_per_over": 6,
+    "city": "Test City",
+    "dates": ["2010-04-25"],
+    "event": { "name": "Indian Premier League", "stage": "Final", "match_number": 59 },
+    "match_type": "T20",
+    "outcome": { "by": { "runs": 10 }, "winner": "Team A" },
+    "overs": 20,
+    "player_of_match": ["Player X"],
+    "season": "2009/10",
+    "teams": ["Team A", "Team B"],
+    "toss": { "decision": "bat", "winner": "Team A" },
+    "venue": "Test Venue",
+    "registry": {
+      "people": {
+        "A1": "a0000001",
+        "A2": "a0000002",
+        "A3": "a0000003",
+        "A4": "a0000004",
+        "B1": "b0000001",
+        "F1": "f0000001",
+        "F2": "f0000002",
+        "F3": "f0000003",
+        "Batter B": "bb000001",
+        "Bowler A": "ba000001",
+        "NonStriker B": "ns000001",
+        "SO Batter": "sob00001",
+        "SO Bowler": "sobow001",
+        "SO NS": "sons0001"
+      }
+    }
+  },
+  "innings": [
+    {
+      "team": "Team A",
+      "overs": [
+        {
+          "over": 0,
+          "deliveries": [
+            {
+              "batter": "A1",
+              "bowler": "B1",
+              "non_striker": "A2",
+              "runs": { "batter": 1, "extras": 0, "total": 1 }
+            },
+            {
+              "batter": "A1",
+              "bowler": "B1",
+              "non_striker": "A2",
+              "extras": { "wides": 1 },
+              "runs": { "batter": 0, "extras": 1, "total": 1 }
+            },
+            {
+              "batter": "A1",
+              "bowler": "B1",
+              "non_striker": "A2",
+              "extras": { "noballs": 1 },
+              "runs": { "batter": 4, "extras": 1, "total": 5 }
+            },
+            {
+              "batter": "A1",
+              "bowler": "B1",
+              "non_striker": "A2",
+              "extras": { "byes": 2 },
+              "runs": { "batter": 0, "extras": 2, "total": 2 }
+            },
+            {
+              "batter": "A1",
+              "bowler": "B1",
+              "non_striker": "A2",
+              "extras": { "legbyes": 1 },
+              "runs": { "batter": 0, "extras": 1, "total": 1 }
+            },
+            {
+              "batter": "A1",
+              "bowler": "B1",
+              "non_striker": "A2",
+              "runs": { "batter": 0, "extras": 0, "total": 0 },
+              "wickets": [{ "player_out": "A1", "kind": "bowled" }]
+            },
+            {
+              "batter": "A2",
+              "bowler": "B1",
+              "non_striker": "A1",
+              "runs": { "batter": 0, "extras": 0, "total": 0 },
+              "wickets": [
+                {
+                  "player_out": "A2",
+                  "kind": "caught",
+                  "fielders": [{ "name": "F1", "substitute": false }]
+                }
+              ]
+            },
+            {
+              "batter": "A3",
+              "bowler": "B1",
+              "non_striker": "A1",
+              "runs": { "batter": 0, "extras": 0, "total": 0 },
+              "wickets": [
+                {
+                  "player_out": "A3",
+                  "kind": "run out",
+                  "fielders": [{ "name": "Sub Fielder", "substitute": true }]
+                }
+              ]
+            },
+            {
+              "batter": "A4",
+              "bowler": "B1",
+              "non_striker": "A1",
+              "runs": { "batter": 0, "extras": 0, "total": 0 },
+              "wickets": [
+                {
+                  "player_out": "A4",
+                  "kind": "run out",
+                  "fielders": [{ "name": "F2", "substitute": false }]
+                },
+                {
+                  "player_out": "A1",
+                  "kind": "caught",
+                  "fielders": [{ "name": "F3", "substitute": false }]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Team B",
+      "overs": [
+        {
+          "over": 0,
+          "deliveries": [
+            {
+              "batter": "Batter B",
+              "bowler": "Bowler A",
+              "non_striker": "NonStriker B",
+              "runs": { "batter": 2, "extras": 0, "total": 2 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Team A",
+      "overs": [
+        {
+          "over": 20,
+          "deliveries": [
+            {
+              "batter": "SO Batter",
+              "bowler": "SO Bowler",
+              "non_striker": "SO NS",
+              "runs": { "batter": 1, "extras": 0, "total": 1 }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

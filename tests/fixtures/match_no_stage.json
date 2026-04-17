@@ -1,0 +1,36 @@
+{
+  "meta": { "data_version": "1.0.0", "created": "2026-01-01", "revision": 1 },
+  "info": {
+    "balls_per_over": 6,
+    "city": "Test City",
+    "dates": ["2011-04-01"],
+    "event": { "name": "Indian Premier League" },
+    "match_type": "T20",
+    "outcome": { "winner": "Team A" },
+    "overs": 20,
+    "player_of_match": ["Player Y"],
+    "season": "2011",
+    "teams": ["Team A", "Team B"],
+    "toss": { "decision": "field", "winner": "Team B" },
+    "venue": "Test Venue"
+  },
+  "innings": [
+    {
+      "team": "Team A",
+      "overs": [
+        {
+          "over": 0,
+          "deliveries": [
+            {
+              "batter": "A1",
+              "bowler": "B1",
+              "non_striker": "A2",
+              "runs": { "batter": 0, "extras": 0, "total": 0 }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

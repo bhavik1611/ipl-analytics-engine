@@ -1,0 +1,37 @@
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ruff_cache/
+
+# Cursor / IDE state
+.cursor/
+
+# Virtual environments
+.venv/
+
+# Local env files / secrets
+.env
+
+# Logs
+logs/
+
+# Generated / heavy data artifacts (rebuildable)
+data/processed/
+data/runs/
+
+# Raw Cricsheet data (large, source-of-truth external)
+data/raw/
+
+# Generated static-report inputs/outputs (rebuildable)
+data/static_reports/
+data/raw_aggregated_df_*.csv
+
+# Generated roster artifacts (rebuildable; keep team_home_venues.json committed)
+data/reference/current_rosters.*
+
+# OS cruft inside data
+data/.DS_Store
+

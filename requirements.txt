@@ -1,0 +1,6 @@
+pydantic==2.*
+pandas==2.*
+pyarrow==21.*
+python-dotenv==1.*
+pytest==8.*
+ruff==0.12.*
