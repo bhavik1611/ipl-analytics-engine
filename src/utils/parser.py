@@ -9,6 +9,7 @@ from __future__ import annotations
 import datetime as dt
 import json
 import logging
+import sys
 import time
 from pathlib import Path
 from typing import Any
@@ -165,7 +166,14 @@ def parse_all_matches(raw_dir: str, processed_dir: str, force: bool = False) -> 
     matches_dir = out_root / "matches"
     matches_dir.mkdir(parents=True, exist_ok=True)
 
-    it = tqdm(filepaths, total=len(filepaths), desc="Parsing match JSON", unit="match")
+    it = tqdm(
+        filepaths,
+        total=len(filepaths),
+        desc="Parsing match JSON",
+        unit="match",
+        dynamic_ncols=True,
+        file=sys.stdout,
+    )
     for idx, filepath in enumerate(it, start=1):
         match_id = filepath.stem
         out_path = matches_dir / f"{match_id}.parquet"
@@ -372,7 +380,10 @@ def _parse_delivery(
     if isinstance(extras_dict, dict) and extras_dict:
         keys = list(extras_dict.keys())
         if len(keys) > 1:
-            logger.warning("Multiple extras keys on one delivery; using first: %s", keys)
+            tqdm.write(
+                f"Multiple extras keys on one delivery; using first: {keys}",
+                file=sys.stderr,
+            )
         extras_key = keys[0]
         extras_runs_value = int(extras_dict.get(extras_key, 0) or 0)
 

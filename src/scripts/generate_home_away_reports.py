@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -494,7 +495,14 @@ def _pair_reports(
 ) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     pairs = _iter_home_away(franchises)
-    it = tqdm(pairs, total=len(pairs), desc="Generating home/away reports", unit="matchup")
+    it = tqdm(
+        pairs,
+        total=len(pairs),
+        desc="Generating home/away reports",
+        unit="matchup",
+        dynamic_ncols=True,
+        file=sys.stdout,
+    )
     for home, away in it:
         venue = str(home_venues[home])
         fname, payload = _build_one_report(

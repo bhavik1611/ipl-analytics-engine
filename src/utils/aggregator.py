@@ -10,6 +10,7 @@ Career tables remain keyed by display ``player`` name and add ``player_id``
 from __future__ import annotations
 
 import logging
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -1166,7 +1167,14 @@ def _process_matches(match_files: list[Path], run_id: str) -> _MatchAccum:
         total_files,
     )
     acc = _new_accum()
-    it = tqdm(match_files, total=total_files, desc="Aggregating match parquets", unit="match")
+    it = tqdm(
+        match_files,
+        total=total_files,
+        desc="Aggregating match parquets",
+        unit="match",
+        dynamic_ncols=True,
+        file=sys.stdout,
+    )
     for idx, path in enumerate(it, start=1):
         match_df = pd.read_parquet(path)
         if match_df.empty:

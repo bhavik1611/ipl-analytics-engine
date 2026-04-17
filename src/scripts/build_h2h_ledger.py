@@ -11,6 +11,7 @@ Example:
 from __future__ import annotations
 
 import argparse
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -101,7 +102,14 @@ def build_ledger(matches_dir: Path, checkpoint: int) -> pd.DataFrame:
     files = sorted(matches_dir.glob("*.parquet"))
     parts: list[pd.DataFrame] = []
     merged: list[pd.DataFrame] = []
-    it = tqdm(files, total=len(files), desc="Building H2H ledger", unit="match")
+    it = tqdm(
+        files,
+        total=len(files),
+        desc="Building H2H ledger",
+        unit="match",
+        dynamic_ncols=True,
+        file=sys.stdout,
+    )
     for idx, path in enumerate(it, start=1):
         df = pd.read_parquet(path, columns=_COLS)
         parts.append(_agg_match_h2h(df))

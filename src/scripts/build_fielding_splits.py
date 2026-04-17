@@ -11,6 +11,7 @@ overall career, venue-wise, season-wise.
 from __future__ import annotations
 
 import argparse
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -161,7 +162,14 @@ def build_splits(matches_dir: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
     event_parts: list[pd.DataFrame] = []
     fp_parts: list[pd.DataFrame] = []
     files = sorted(matches_dir.glob("*.parquet"))
-    it = tqdm(files, total=len(files), desc="Building fielding splits", unit="match")
+    it = tqdm(
+        files,
+        total=len(files),
+        desc="Building fielding splits",
+        unit="match",
+        dynamic_ncols=True,
+        file=sys.stdout,
+    )
     for path in it:
         match_df = pd.read_parquet(path)
         event_parts.append(_fielding_event_rows(match_df.loc[:, _NEEDED_WICKET_COLS]))
