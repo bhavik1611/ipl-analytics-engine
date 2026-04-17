@@ -24,6 +24,7 @@ def _env_snapshot() -> dict[str, str]:
     allow = {
         "CRICSHEET_RAW_DIR",
         "PROCESSED_DIR",
+        "STATIC_REPORTS_DIR",
         "LOG_LEVEL",
     }
     out: dict[str, str] = {}
@@ -123,11 +124,15 @@ def build_run_config(*, force: bool, min_h2h_balls: int) -> RunConfig:
 
     paths = get_project_paths()
     repo_data = Path("data")
+    static_reports_dir = repo_data / "static_reports" / "home_away"
+    override = os.getenv("STATIC_REPORTS_DIR", "").strip()
+    if override:
+        static_reports_dir = Path(override)
     return RunConfig(
         raw_dir=paths.cricsheet_raw_dir,
         processed_dir=paths.processed_dir,
         runs_dir=repo_data / "runs",
-        static_reports_dir=Path("../cric/web/public/analysis"),
+        static_reports_dir=static_reports_dir,
         force=force,
         active_latest_season_only=True,
         min_h2h_balls=min_h2h_balls,

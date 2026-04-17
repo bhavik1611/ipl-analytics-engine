@@ -27,6 +27,7 @@ Environment variables:
 
 - **`CRICSHEET_RAW_DIR`**: path to directory containing `*.json` match files
 - **`PROCESSED_DIR`**: output directory for processed artifacts (parquet/CSVs)
+- **`STATIC_REPORTS_DIR`** (optional): where `home_away` JSON reports are written (default: `data/static_reports/home_away`)
 - **`LOG_LEVEL`**: `INFO` (default) or `DEBUG`
 
 ## Run the pipeline (end-to-end)

@@ -71,6 +71,7 @@ flowchart TD
   - `data/processed/h2h_batter_bowler.parquet`
   - `data/reference/current_rosters.json` (+ `.csv`)
 - **Static reports**: `data/static_reports/home_away/*.json` and `data/static_reports/home_away/index.json`
+  - Optional override: set `STATIC_REPORTS_DIR` to redirect report output (useful for local “write straight into the web app checkout” workflows).
 
 ### Per-run manifest
 
