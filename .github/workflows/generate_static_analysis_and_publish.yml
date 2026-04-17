@@ -36,6 +36,15 @@ jobs:
       - name: Checkout analytics engine
         uses: actions/checkout@v4
 
+      - name: Verify publish token (private app repo)
+        env:
+          FANTASY_CRIC_APP_REPO_TOKEN: ${{ secrets.FANTASY_CRIC_APP_REPO_TOKEN }}
+        run: |
+          if [ -z "${FANTASY_CRIC_APP_REPO_TOKEN}" ]; then
+            echo "::error::Missing Actions secret FANTASY_CRIC_APP_REPO_TOKEN. The default GITHUB_TOKEN cannot clone a private sibling repo. Add a PAT with Contents read+write on fantasy-cric-app (see README)."
+            exit 1
+          fi
+
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
@@ -87,13 +96,15 @@ jobs:
           fi
           rsync -a data/static_reports/home_away/ analysis_out/
 
+      # Private sibling repo: default GITHUB_TOKEN cannot read it. Use a PAT with
+      # contents read+write on fantasy-cric-app (classic: `repo`; fine-grained: Contents RW).
       - name: Checkout Vercel app repo
         uses: actions/checkout@v4
         with:
           repository: bhavik1611/fantasy-cric-app
           ref: main
           path: cric
-          ssh-key: ${{ secrets.FANTASY_CRIC_APP_DEPLOY_KEY }}
+          token: ${{ secrets.FANTASY_CRIC_APP_REPO_TOKEN }}
 
       - name: Copy analysis into app public folder
         run: |

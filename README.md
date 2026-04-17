@@ -79,8 +79,16 @@ This repo includes a workflow that:
 
 Workflow file: `.github/workflows/generate_static_analysis_and_publish.yml`
 
-### Required secret
+### Required secret (private app repo)
 
-Create a deploy key with write access to `bhavik1611/fantasy-cric-app`, then add it to this repo as:
+The workflow checks out and pushes to `bhavik1611/fantasy-cric-app`. The default `GITHUB_TOKEN` in this repo **cannot** access another private repository.
 
-- `FANTASY_CRIC_APP_DEPLOY_KEY`
+Add a **Personal Access Token** to **ipl-analytics-engine** → Settings → Secrets and variables → Actions:
+
+- **`FANTASY_CRIC_APP_REPO_TOKEN`**: PAT that can read and write `fantasy-cric-app` contents (enough to clone and push to `main`).
+  - **Classic PAT**: scope **`repo`** (simplest for a single private repo you control).
+  - **Fine-grained PAT**: repository access **only** `fantasy-cric-app`, permission **Contents: Read and write**.
+
+Create the token under the GitHub account that should appear as the commit author on the app repo (often your user), or a machine account with access to that repo.
+
+**Previously:** the workflow used `FANTASY_CRIC_APP_DEPLOY_KEY` (SSH deploy key). That still works only if the **public** half is added under **fantasy-cric-app** → Settings → Deploy keys (with **Allow write access**), and the private key is valid OpenSSH PEM. Many “cannot fetch private repo” failures are fixed more reliably by switching to the PAT above, which is what the workflow uses now.
