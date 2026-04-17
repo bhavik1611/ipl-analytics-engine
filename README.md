@@ -66,3 +66,20 @@ python scripts/quality_check.py
 ## System design
 
 See `docs/system_design.md` for the architecture and end-to-end flow.
+
+## GitHub Actions: generate + publish to Vercel app
+
+This repo includes a workflow that:
+
+- downloads Cricsheet IPL JSON (`ipl_json.zip`)
+- runs `main.py` to generate `data/static_reports/home_away/`
+- copies the generated files into the Vercel app repo at `web/public/analysis`
+- commits and pushes to `bhavik1611/fantasy-cric-app` (which triggers Vercel)
+
+Workflow file: `.github/workflows/generate_static_analysis_and_publish.yml`
+
+### Required secret
+
+Create a deploy key with write access to `bhavik1611/fantasy-cric-app`, then add it to this repo as:
+
+- `FANTASY_CRIC_APP_DEPLOY_KEY`

@@ -1,0 +1,96 @@
+name: Generate static analysis and publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      min_h2h_balls:
+        description: "Minimum balls for H2H inclusion"
+        required: false
+        default: "15"
+      force:
+        description: "Recompute even if outputs exist"
+        required: false
+        default: "true"
+  schedule:
+    # Daily at 02:30 UTC
+    - cron: "30 2 * * *"
+
+concurrency:
+  group: static-analysis-publish
+  cancel-in-progress: true
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      CRICSHEET_ZIP_URL: "https://cricsheet.org/downloads/ipl_json.zip"
+      CRICSHEET_RAW_DIR: "${{ github.workspace }}/data/raw/cricsheet_ipl"
+      PROCESSED_DIR: "${{ github.workspace }}/data/processed"
+      LOG_LEVEL: "INFO"
+      MIN_H2H_BALLS: "${{ inputs.min_h2h_balls || '15' }}"
+      FORCE: "${{ inputs.force || 'true' }}"
+
+    steps:
+      - name: Checkout analytics engine
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Download Cricsheet IPL JSON zip
+        run: |
+          mkdir -p "${CRICSHEET_RAW_DIR}"
+          curl -L --fail --retry 3 --retry-delay 5 "${CRICSHEET_ZIP_URL}" -o ipl_json.zip
+          unzip -o ipl_json.zip -d "${CRICSHEET_RAW_DIR}"
+
+      - name: Generate static reports (home_away)
+        run: |
+          args="--min-h2h-balls ${MIN_H2H_BALLS}"
+          if [ "${FORCE}" = "true" ]; then
+            args="${args} --force"
+          fi
+          python main.py ${args}
+
+      - name: Prepare analysis output payload
+        run: |
+          rm -rf analysis_out
+          mkdir -p analysis_out
+          cp -R data/static_reports/home_away/. analysis_out/
+
+      - name: Checkout Vercel app repo
+        uses: actions/checkout@v4
+        with:
+          repository: bhavik1611/fantasy-cric-app
+          ref: main
+          path: cric
+          ssh-key: ${{ secrets.FANTASY_CRIC_APP_DEPLOY_KEY }}
+
+      - name: Copy analysis into app public folder
+        run: |
+          mkdir -p cric/web/public/analysis
+          rsync -a --delete analysis_out/ cric/web/public/analysis/
+
+      - name: Commit and push if changed
+        working-directory: cric
+        run: |
+          git status --porcelain
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No changes to publish."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add web/public/analysis
+          git commit -m "Update static analysis (home_away)"
+          git push origin HEAD:main
+
