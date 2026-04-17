@@ -60,12 +60,32 @@ jobs:
             args="${args} --force"
           fi
           python main.py ${args}
+          echo "Debug: cwd=$(pwd)"
+          echo "Debug: listing data/static_reports/home_away (if present)"
+          ls -la data/static_reports || true
+          ls -la data/static_reports/home_away || true
 
       - name: Prepare analysis output payload
         run: |
           rm -rf analysis_out
           mkdir -p analysis_out
-          cp -R data/static_reports/home_away/. analysis_out/
+          # Directory should be created by the generator, but create defensively so
+          # errors are about missing outputs (index.json), not about missing dirs.
+          mkdir -p data/static_reports/home_away
+          if [ ! -d "data/static_reports/home_away" ]; then
+            echo "ERROR: expected output directory missing: data/static_reports/home_away" >&2
+            echo "Debug: listing data/static_reports (if present)" >&2
+            ls -la data || true
+            ls -la data/static_reports || true
+            exit 1
+          fi
+          if [ ! -f "data/static_reports/home_away/index.json" ]; then
+            echo "ERROR: expected index.json missing: data/static_reports/home_away/index.json" >&2
+            echo "Debug: listing data/static_reports/home_away" >&2
+            ls -la data/static_reports/home_away || true
+            exit 1
+          fi
+          rsync -a data/static_reports/home_away/ analysis_out/
 
       - name: Checkout Vercel app repo
         uses: actions/checkout@v4
