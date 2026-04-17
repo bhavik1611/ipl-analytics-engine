@@ -21,6 +21,7 @@ from pathlib import Path
 from typing import Any
 
 import pandas as pd
+from tqdm import tqdm
 
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 
@@ -492,7 +493,9 @@ def _pair_reports(
     fielding_season: pd.DataFrame,
 ) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
-    for home, away in _iter_home_away(franchises):
+    pairs = _iter_home_away(franchises)
+    it = tqdm(pairs, total=len(pairs), desc="Generating home/away reports", unit="matchup")
+    for home, away in it:
         venue = str(home_venues[home])
         fname, payload = _build_one_report(
             home=home,

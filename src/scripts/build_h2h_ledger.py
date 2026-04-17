@@ -15,6 +15,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 import pandas as pd
+from tqdm import tqdm
 
 from src.config import get_project_paths, load_env
 
@@ -100,7 +101,8 @@ def build_ledger(matches_dir: Path, checkpoint: int) -> pd.DataFrame:
     files = sorted(matches_dir.glob("*.parquet"))
     parts: list[pd.DataFrame] = []
     merged: list[pd.DataFrame] = []
-    for idx, path in enumerate(files, start=1):
+    it = tqdm(files, total=len(files), desc="Building H2H ledger", unit="match")
+    for idx, path in enumerate(it, start=1):
         df = pd.read_parquet(path, columns=_COLS)
         parts.append(_agg_match_h2h(df))
         if checkpoint > 0 and (idx % checkpoint == 0):

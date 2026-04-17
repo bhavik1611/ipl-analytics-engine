@@ -14,6 +14,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 import pandas as pd
+from tqdm import tqdm
 
 from src.scoring.calculator import calculate_match_points
 from src.utils.logging_support import ensure_pipeline_logger, new_run_id
@@ -1165,7 +1166,8 @@ def _process_matches(match_files: list[Path], run_id: str) -> _MatchAccum:
         total_files,
     )
     acc = _new_accum()
-    for idx, path in enumerate(match_files, start=1):
+    it = tqdm(match_files, total=total_files, desc="Aggregating match parquets", unit="match")
+    for idx, path in enumerate(it, start=1):
         match_df = pd.read_parquet(path)
         if match_df.empty:
             log.debug(

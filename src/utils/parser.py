@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Any
 
 import pandas as pd
+from tqdm import tqdm
 
 from src.config import get_project_paths, load_env
 
@@ -164,7 +165,8 @@ def parse_all_matches(raw_dir: str, processed_dir: str, force: bool = False) -> 
     matches_dir = out_root / "matches"
     matches_dir.mkdir(parents=True, exist_ok=True)
 
-    for idx, filepath in enumerate(filepaths, start=1):
+    it = tqdm(filepaths, total=len(filepaths), desc="Parsing match JSON", unit="match")
+    for idx, filepath in enumerate(it, start=1):
         match_id = filepath.stem
         out_path = matches_dir / f"{match_id}.parquet"
         if out_path.exists() and not force:

@@ -16,6 +16,7 @@ from pathlib import Path
 from typing import Any
 
 import pandas as pd
+from tqdm import tqdm
 
 from src.config import get_project_paths, load_env
 from src.scoring.calculator import calculate_match_points
@@ -159,7 +160,9 @@ def build_splits(matches_dir: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
 
     event_parts: list[pd.DataFrame] = []
     fp_parts: list[pd.DataFrame] = []
-    for path in sorted(matches_dir.glob("*.parquet")):
+    files = sorted(matches_dir.glob("*.parquet"))
+    it = tqdm(files, total=len(files), desc="Building fielding splits", unit="match")
+    for path in it:
         match_df = pd.read_parquet(path)
         event_parts.append(_fielding_event_rows(match_df.loc[:, _NEEDED_WICKET_COLS]))
         fp_parts.append(_fielding_points_rows(match_df))
