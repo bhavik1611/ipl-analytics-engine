@@ -316,7 +316,7 @@ def _agg_h2h_chunk(
     d = d[d["batter"].isin(batters) & d["bowler"].isin(bowlers)]
     if d.empty:
         return pd.DataFrame(
-            columns=["batter", "bowler", "balls", "runs", "dismissals", "strike_rate"]
+            columns=["batter", "bowler", "balls", "runs", "dismissals", "matches", "strike_rate"]
         )
     d["legal"] = d["is_legal_delivery"].fillna(False).astype(bool)
     d["out"] = (
@@ -329,6 +329,7 @@ def _agg_h2h_chunk(
         runs=("runs_batter", "sum"),
         dismissals=("out", "sum"),
     )
+    g["matches"] = 1
     g["strike_rate"] = (g["runs"] * 100.0 / g["balls"]).where(g["balls"] > 0, 0.0)
     return g
 
@@ -341,7 +342,12 @@ def _combine_h2h(parts: list[pd.DataFrame]) -> pd.DataFrame:
         return x
     g = (
         x.groupby(["batter", "bowler"], as_index=False)
-        .agg(balls=("balls", "sum"), runs=("runs", "sum"), dismissals=("dismissals", "sum"))
+        .agg(
+            balls=("balls", "sum"),
+            runs=("runs", "sum"),
+            dismissals=("dismissals", "sum"),
+            matches=("matches", "sum"),
+        )
     )
     g["strike_rate"] = g.apply(lambda r: _safe_div(r["runs"] * 100.0, r["balls"]), axis=1)
     return g
@@ -421,10 +427,12 @@ def _h2h_bowler_aggregate_vs_pool(h2h_df: pd.DataFrame, min_balls: int) -> pd.Da
 def _h2h_rows_meeting_min_balls(df: pd.DataFrame, min_balls: int) -> pd.DataFrame:
     """H2H pairs where the batter faced at least ``min_balls`` legal deliveries.
 
-    Rows are sorted by ``strike_rate`` ascending (stable sort).
+    Rows are sorted by ``strike_rate`` ascending (stable sort). Adds
+    ``bowler_effectiveness`` as ``dismissals / matches`` (dismissals per match
+    in which this pair faced each other).
 
     Args:
-        df: Aggregated H2H with ``balls``, ``strike_rate``.
+        df: Aggregated H2H with ``balls``, ``matches``, ``dismissals``, ``strike_rate``.
         min_balls: Minimum legal balls faced for inclusion.
 
     Returns:
@@ -434,6 +442,10 @@ def _h2h_rows_meeting_min_balls(df: pd.DataFrame, min_balls: int) -> pd.DataFram
     if min_balls < 1:
         raise ValueError("min_balls must be at least 1")
     sub = df.loc[df["balls"] >= float(min_balls)].copy()
+    m = sub["matches"].astype(float)
+    sub["bowler_effectiveness"] = (
+        (sub["dismissals"].astype(float) / m).where(m > 0, 0.0).astype(float)
+    )
     return sub.sort_values(["batter", "strike_rate"], ascending=[True, True], kind="mergesort")
 
 

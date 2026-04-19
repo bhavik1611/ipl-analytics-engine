@@ -66,7 +66,9 @@ def _agg_match_h2h(match_df: pd.DataFrame) -> pd.DataFrame:
     d = d.loc[~d["is_super_over"].fillna(False).astype(bool)]
     d = d.loc[d["batter"].notna() & d["bowler"].notna()]
     if d.empty:
-        return pd.DataFrame(columns=["batter", "bowler", "balls", "runs", "dismissals"])
+        return pd.DataFrame(
+            columns=["batter", "bowler", "balls", "runs", "dismissals", "matches"]
+        )
     d["legal"] = d["is_legal_delivery"].fillna(False).astype(bool)
     d["out"] = (
         d["is_wicket"].fillna(False).astype(bool)
@@ -78,6 +80,8 @@ def _agg_match_h2h(match_df: pd.DataFrame) -> pd.DataFrame:
         runs=("runs_batter", "sum"),
         dismissals=("out", "sum"),
     )
+    # One row per pair per match file → this pair met in exactly one match.
+    g["matches"] = 1
     return g
 
 
@@ -85,13 +89,22 @@ def _combine(parts: list[pd.DataFrame]) -> pd.DataFrame:
     """Sum balls/runs/dismissals across fragments."""
 
     if not parts:
-        return pd.DataFrame(columns=["batter", "bowler", "balls", "runs", "dismissals"])
+        return pd.DataFrame(
+            columns=["batter", "bowler", "balls", "runs", "dismissals", "matches"]
+        )
     x = pd.concat(parts, ignore_index=True)
     if x.empty:
-        return pd.DataFrame(columns=["batter", "bowler", "balls", "runs", "dismissals"])
+        return pd.DataFrame(
+            columns=["batter", "bowler", "balls", "runs", "dismissals", "matches"]
+        )
     return (
         x.groupby(["batter", "bowler"], as_index=False)
-        .agg(balls=("balls", "sum"), runs=("runs", "sum"), dismissals=("dismissals", "sum"))
+        .agg(
+            balls=("balls", "sum"),
+            runs=("runs", "sum"),
+            dismissals=("dismissals", "sum"),
+            matches=("matches", "sum"),
+        )
         .reset_index(drop=True)
     )
 
@@ -118,9 +131,17 @@ def build_ledger(matches_dir: Path, checkpoint: int) -> pd.DataFrame:
             parts = []
     merged.append(_combine(parts))
     ledger = _combine(merged)
+    balls_f = ledger["balls"].astype(float)
+    matches_f = ledger["matches"].astype(float)
     ledger["strike_rate"] = (
-        (ledger["runs"].astype(float) * 100.0 / ledger["balls"].astype(float))
-        .where(ledger["balls"].astype(float) > 0, 0.0)
+        (ledger["runs"].astype(float) * 100.0 / balls_f)
+        .where(balls_f > 0, 0.0)
+        .astype(float)
+    )
+    # Dismissals per match in which this pair faced each other (sample-size fair vs balls).
+    ledger["bowler_effectiveness"] = (
+        (ledger["dismissals"].astype(float) / matches_f)
+        .where(matches_f > 0, 0.0)
         .astype(float)
     )
     return ledger.sort_values(["batter", "bowler"]).reset_index(drop=True)

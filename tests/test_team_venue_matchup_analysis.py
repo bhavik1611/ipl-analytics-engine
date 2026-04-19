@@ -58,13 +58,18 @@ def test_h2h_rows_meeting_min_balls_filters_and_sorts_sr() -> None:
             "bowler": ["X", "Y", "Z"],
             "balls": [10, 5, 12],
             "runs": [10, 25, 30],
-            "dismissals": [0, 0, 0],
+            "dismissals": [2, 0, 3],
+            "matches": [4, 1, 2],
             "strike_rate": [100.0, 500.0, 250.0],
         }
     )
     out = _h2h_rows_meeting_min_balls(df, min_balls=10)
     assert list(out["batter"]) == ["A", "C"]
     assert len(out) == 2
+    row_a = out.loc[out["batter"] == "A"].iloc[0]
+    assert abs(float(row_a["bowler_effectiveness"]) - 0.5) < 1e-9  # 2 dismissals / 4 matches
+    row_c = out.loc[out["batter"] == "C"].iloc[0]
+    assert abs(float(row_c["bowler_effectiveness"]) - 1.5) < 1e-9  # 3 / 2 matches
 
 
 def test_h2h_bowler_aggregate_vs_pool_wickets_economy_sort() -> None:
@@ -119,7 +124,14 @@ def test_h2h_rows_meeting_min_balls_rejects_zero() -> None:
     """Minimum balls must be at least one."""
 
     df = pd.DataFrame(
-        {"batter": ["A"], "bowler": ["X"], "balls": [5], "strike_rate": [100.0]}
+        {
+            "batter": ["A"],
+            "bowler": ["X"],
+            "balls": [5],
+            "dismissals": [0],
+            "matches": [1],
+            "strike_rate": [100.0],
+        }
     )
     with pytest.raises(ValueError, match="at least 1"):
         _h2h_rows_meeting_min_balls(df, min_balls=0)

@@ -163,6 +163,15 @@ def _venue_profile(
 
 def _h2h_pairs_filtered(h2h: pd.DataFrame, min_balls: int) -> pd.DataFrame:
     sub = h2h.loc[h2h["balls"] >= float(min_balls)].copy()
+    if "matches" not in sub.columns:
+        raise ValueError(
+            "H2H ledger is missing column 'matches'; rebuild with "
+            "python -m src.scripts.build_h2h_ledger"
+        )
+    m = sub["matches"].astype(float)
+    sub["bowler_effectiveness"] = (
+        (sub["dismissals"].astype(float) / m).where(m > 0, 0.0).astype(float)
+    )
     return sub.sort_values(["batter", "strike_rate"], ascending=[True, True], kind="mergesort")
 
 

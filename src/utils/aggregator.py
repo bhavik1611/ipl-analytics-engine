@@ -1197,22 +1197,6 @@ def _process_matches(match_files: list[Path], run_id: str) -> _MatchAccum:
                 path.name,
             )
         _append_match_artifacts(acc, match_df)
-        if idx % 100 == 0:
-            log.info(
-                "[run=%s] aggregate_all: checkpoint %d/%d parquet files",
-                run_id,
-                idx,
-                total_files,
-            )
-        if idx in milestones:
-            pct = min(100, (idx * 100) // max(total_files, 1))
-            log.info(
-                "[run=%s] aggregate_all: progress %d/%d files (~%d%%)",
-                run_id,
-                idx,
-                total_files,
-                pct,
-            )
     return acc
 
 
