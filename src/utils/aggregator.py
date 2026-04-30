@@ -384,6 +384,7 @@ def _bowling_career_from_innings(innings: pd.DataFrame) -> pd.DataFrame:
             "wickets",
             "economy",
             "bowling_average",
+            "bowling_strike_rate",
             "maidens",
             "four_wicket_hauls",
             "fantasy_bowling_total",
@@ -408,6 +409,9 @@ def _bowling_career_from_innings(innings: pd.DataFrame) -> pd.DataFrame:
     )
     out["bowling_average"] = out.apply(
         lambda r: _safe_div(r["runs_conceded"], r["wickets"]), axis=1
+    )
+    out["bowling_strike_rate"] = out.apply(
+        lambda r: _safe_div(r["legal_deliveries"], r["wickets"]), axis=1
     )
 
     per_match = innings.groupby(["match_id", "player"], as_index=False).agg(
@@ -841,6 +845,7 @@ def _finalize_career_bowling(
         "wickets",
         "economy",
         "bowling_average",
+        "bowling_strike_rate",
         "maidens",
         "four_wicket_hauls",
         "fantasy_bowling_total",
@@ -931,6 +936,12 @@ def _finalize_venue_splits(
             "fantasy_total_avg": 0.0,
         }
     )
+    out["bowling_average"] = out.apply(
+        lambda r: _safe_div(r["runs_conceded"], r["wickets"]), axis=1
+    )
+    out["bowling_strike_rate"] = out.apply(
+        lambda r: _safe_div(r["legal_deliveries"], r["wickets"]), axis=1
+    )
     cols = [
         "player",
         "venue",
@@ -944,6 +955,8 @@ def _finalize_venue_splits(
         "wickets",
         "overs_bowled",
         "economy",
+        "bowling_average",
+        "bowling_strike_rate",
         "fantasy_batting_avg",
         "fantasy_bowling_avg",
         "fantasy_fielding_avg",
@@ -976,6 +989,12 @@ def _finalize_phase_splits(
     )
     bowl["economy"] = bowl.apply(
         lambda r: _safe_div(r["runs_conceded"], r["legal_deliveries"] / 6.0), axis=1
+    )
+    bowl["bowling_average"] = bowl.apply(
+        lambda r: _safe_div(r["runs_conceded"], r["wickets"]), axis=1
+    )
+    bowl["bowling_strike_rate"] = bowl.apply(
+        lambda r: _safe_div(r["legal_deliveries"], r["wickets"]), axis=1
     )
 
     participation = pd.concat(
@@ -1014,6 +1033,8 @@ def _finalize_phase_splits(
             "runs_conceded": 0,
             "economy": 0.0,
             "wickets": 0,
+            "bowling_average": 0.0,
+            "bowling_strike_rate": 0.0,
             "fantasy_batting_avg": 0.0,
             "fantasy_bowling_avg": 0.0,
         }
@@ -1031,6 +1052,8 @@ def _finalize_phase_splits(
         "runs_conceded",
         "economy",
         "wickets",
+        "bowling_average",
+        "bowling_strike_rate",
         "fantasy_batting_avg",
         "fantasy_bowling_avg",
     ]
@@ -1063,6 +1086,12 @@ def _finalize_season_trends(
     bowl["economy"] = bowl.apply(
         lambda r: _safe_div(r["runs_conceded"], r["legal_deliveries"] / 6.0), axis=1
     )
+    bowl["bowling_average"] = bowl.apply(
+        lambda r: _safe_div(r["runs_conceded"], r["wickets"]), axis=1
+    )
+    bowl["bowling_strike_rate"] = bowl.apply(
+        lambda r: _safe_div(r["legal_deliveries"], r["wickets"]), axis=1
+    )
 
     fp = points.groupby(["player", "season"], as_index=False).agg(
         matches=("match_id", "nunique"),
@@ -1079,6 +1108,8 @@ def _finalize_season_trends(
             "average": 0.0,
             "wickets": 0,
             "economy": 0.0,
+            "bowling_average": 0.0,
+            "bowling_strike_rate": 0.0,
             "fantasy_total_avg": 0.0,
             "fantasy_total_sum": 0.0,
         }
@@ -1092,6 +1123,8 @@ def _finalize_season_trends(
         "average",
         "wickets",
         "economy",
+        "bowling_average",
+        "bowling_strike_rate",
         "fantasy_total_avg",
         "fantasy_total_sum",
     ]

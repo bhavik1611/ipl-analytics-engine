@@ -6,7 +6,7 @@ on:
       min_h2h_balls:
         description: "Minimum balls for H2H inclusion"
         required: false
-        default: "15"
+        default: "1"
       force:
         description: "Recompute even if outputs exist"
         required: false

@@ -403,6 +403,8 @@ def _venue_player_splits_for_union(
         "bowling_wickets",
         "bowling_overs_bowled",
         "bowling_economy",
+        "bowling_average",
+        "bowling_strike_rate",
         "fantasy_bowling_avg",
         "matches_total",
     ]

@@ -122,6 +122,8 @@ def test_career_bowling_wickets_economy_maidens_two_matches(tmp_path: Path) -> N
     assert int(bowl["maidens"]) == 1
     assert float(bowl["overs_bowled"]) == (8 / 6.0)
     assert float(bowl["economy"]) == (5 / (8 / 6.0))
+    assert float(bowl["bowling_average"]) == 2.5  # 5 runs / 2 wickets
+    assert float(bowl["bowling_strike_rate"]) == 4.0  # 8 balls / 2 wickets
 
 
 def test_career_fielding_catches_stumpings_summed(tmp_path: Path) -> None:
