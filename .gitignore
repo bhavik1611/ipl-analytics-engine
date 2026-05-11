@@ -29,8 +29,9 @@ data/raw/
 data/static_reports/
 data/raw_aggregated_df_*.csv
 
-# Generated roster artifacts (rebuildable; keep team_home_venues.json committed)
-data/reference/current_rosters.*
+# Roster CSV is regenerated from parquets. Commit current_rosters.json so CI
+# merges Pace Bowler / Spin Bowler tags for venue pace vs spin stats.
+data/reference/current_rosters.csv
 
 # OS cruft inside data
 data/.DS_Store

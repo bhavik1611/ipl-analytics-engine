@@ -1,0 +1,1106 @@
+{
+  "season": 2026,
+  "as_of_date": "2026-04-27",
+  "source": "derived_match_deliveries_latest_season",
+  "teams": {
+    "Chennai Super Kings": [
+      {
+        "name": "A Kamboj",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "A Mhatre",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "AJ Hosein",
+        "role": [
+          "Spin Bowler",
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "D Brevis",
+        "role": [],
+        "is_captain": false
+      },
+      {
+        "name": "Gurjapneet Singh",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "J Overton",
+        "role": [
+          "Pace Bowler",
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "KK Ahmed",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Kartik Sharma",
+        "role": [
+          "Wicketkeeper",
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "MJ Henry",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "MW Short",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Noor Ahmad",
+        "role": [
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "PR Veer",
+        "role": [
+          "Batsman",
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "RD Chahar",
+        "role": [
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "RD Gaikwad",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": true
+      },
+      {
+        "name": "S Dube",
+        "role": [
+          "Batsman",
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "SN Khan",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "SV Samson",
+        "role": [
+          "Wicketkeeper",
+          "Batsman"
+        ],
+        "is_captain": false
+      }
+    ],
+    "Delhi Capitals": [
+      {
+        "name": "AR Patel",
+        "role": [
+          "Spin Bowler",
+          "Batsman"
+        ],
+        "is_captain": true
+      },
+      {
+        "name": "Ashutosh Sharma",
+        "role": [
+          "Batsman",
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Auqib Nabi",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "DA Miller",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "KL Rahul",
+        "role": [
+          "Wicketkeeper",
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Kuldeep Yadav",
+        "role": [
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "L Ngidi",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Mukesh Kumar",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "N Rana",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "P Nissanka",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Sameer Rizvi",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "T Natarajan",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "T Stubbs",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "V Nigam",
+        "role": [
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      }
+    ],
+    "Gujarat Titans": [
+      {
+        "name": "Ashok Sharma",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "B Sai Sudharsan",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "GD Phillips",
+        "role": [
+          "Batsman",
+          "Wicketkeeper"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "JC Buttler",
+        "role": [
+          "Wicketkeeper",
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "K Rabada",
+        "role": [
+          "Pace Bowler",
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Kumar Kushagra",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "M Prasidh Krishna",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "M Shahrukh Khan",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Mohammed Siraj",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "R Tewatia",
+        "role": [
+          "Batsman",
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Rashid Khan",
+        "role": [
+          "Spin Bowler",
+          "Allrounder"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Shubman Gill",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": true
+      },
+      {
+        "name": "Washington Sundar",
+        "role": [
+          "Spin Bowler",
+          "Allrounder"
+        ],
+        "is_captain": false
+      }
+    ],
+    "Kolkata Knight Riders": [
+      {
+        "name": "A Raghuvanshi",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "AM Rahane",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": true
+      },
+      {
+        "name": "AS Roy",
+        "role": [
+          "Spin Bowler",
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "B Muzarabani",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "C Green",
+        "role": [
+          "Batsman",
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "CV Varun",
+        "role": [
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "FH Allen",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Kartik Tyagi",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Navdeep Saini",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "R Powell",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "RK Singh",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Ramandeep Singh",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "SP Narine",
+        "role": [
+          "Spin Bowler",
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "VG Arora",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      }
+    ],
+    "Lucknow Super Giants": [
+      {
+        "name": "A Badoni",
+        "role": [
+          "Batsman",
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "A Nortje",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "AK Markram",
+        "role": [
+          "Batsman",
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Abdul Samad",
+        "role": [
+          "Batsman",
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Avesh Khan",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "DS Rathi",
+        "role": [
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "GF Linde",
+        "role": [
+          "Batsman",
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "M Siddharth",
+        "role": [
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "MD Choudhary",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "MR Marsh",
+        "role": [
+          "Batsman",
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Mohammed Shami",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Mohsin Khan",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "N Pooran",
+        "role": [
+          "Wicketkeeper",
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Prince Yadav",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "RR Pant",
+        "role": [
+          "Wicketkeeper",
+          "Batsman"
+        ],
+        "is_captain": true
+      },
+      {
+        "name": "Shahbaz Ahmed",
+        "role": [
+          "Spin Bowler",
+          "Batsman"
+        ],
+        "is_captain": false
+      }
+    ],
+    "Mumbai Indians": [
+      {
+        "name": "AM Ghazanfar",
+        "role": [
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "C Bosch",
+        "role": [
+          "Pace Bowler",
+          "Allrounder"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "DL Chahar",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "HH Pandya",
+        "role": [
+          "Batsman",
+          "Pace Bowler"
+        ],
+        "is_captain": true
+      },
+      {
+        "name": "JJ Bumrah",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "M Markande",
+        "role": [
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "MJ Santner",
+        "role": [
+          "Spin Bowler",
+          "Allrounder"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Naman Dhir",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Q de Kock",
+        "role": [],
+        "is_captain": false
+      },
+      {
+        "name": "RD Rickelton",
+        "role": [
+          "Wicketkeeper",
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "RG Sharma",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "SA Yadav",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "SE Rutherford",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "SN Thakur",
+        "role": [
+          "Pace Bowler",
+          "Allrounder"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "TA Boult",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Tilak Varma",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      }
+    ],
+    "Punjab Kings": [
+      {
+        "name": "Arshdeep Singh",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "C Connolly",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "M Jansen",
+        "role": [
+          "Pace Bowler",
+          "Allrounder"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "MP Stoinis",
+        "role": [
+          "Batsman",
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "N Wadhera",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "P Simran Singh",
+        "role": [
+          "Batsman",
+          "Wicketkeeper"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Priyansh Arya",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "SS Iyer",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": true
+      },
+      {
+        "name": "Shashank Singh",
+        "role": [
+          "Batsman",
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Vijaykumar Vyshak",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "XC Bartlett",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "YS Chahal",
+        "role": [
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      }
+    ],
+    "Rajasthan Royals": [
+      {
+        "name": "Brijesh Sharma",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "D Ferreira",
+        "role": [
+          "Wicketkeeper",
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Dhruv Jurel",
+        "role": [
+          "Batsman",
+          "Wicketkeeper"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "JC Archer",
+        "role": [
+          "Pace Bowler",
+          "Allrounder"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "LG Pretorius",
+        "role": [
+          "Wicketkeeper",
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "N Burger",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "R Parag",
+        "role": [
+          "Batsman",
+          "Spin Bowler"
+        ],
+        "is_captain": true
+      },
+      {
+        "name": "RA Jadeja",
+        "role": [
+          "Spin Bowler",
+          "Allrounder"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Ravi Bishnoi",
+        "role": [
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "SO Hetmyer",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Sandeep Sharma",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "TU Deshpande",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "V Suryavanshi",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "YBK Jaiswal",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      }
+    ],
+    "Royal Challengers Bengaluru": [
+      {
+        "name": "Abhinandan Singh",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "B Kumar",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "D Padikkal",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "JA Duffy",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "JM Sharma",
+        "role": [
+          "Batsman",
+          "Wicketkeeper"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "JR Hazlewood",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "KH Pandya",
+        "role": [
+          "Spin Bowler",
+          "Allrounder"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "PD Salt",
+        "role": [
+          "Wicketkeeper",
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "R Shepherd",
+        "role": [
+          "Pace Bowler",
+          "Allrounder"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "RM Patidar",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": true
+      },
+      {
+        "name": "Rasikh Salam",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Suyash Sharma",
+        "role": [
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "TH David",
+        "role": [
+          "Batsman",
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "V Kohli",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "VR Iyer",
+        "role": [
+          "Batsman",
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      }
+    ],
+    "Sunrisers Hyderabad": [
+      {
+        "name": "Abhishek Sharma",
+        "role": [
+          "Batsman",
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Aniket Verma",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "DA Payne",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "E Malinga",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "H Klaasen",
+        "role": [
+          "Wicketkeeper",
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "HV Patel",
+        "role": [
+          "Pace Bowler",
+          "Allrounder"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Harsh Dubey",
+        "role": [
+          "Spin Bowler",
+          "Allrounder"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Ishan Kishan",
+        "role": [
+          "Wicketkeeper",
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "JD Unadkat",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "LS Livingstone",
+        "role": [
+          "Batsman",
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Nithish Kumar Reddy",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "PP Hinge",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "S Arora",
+        "role": [
+          "Batsman"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Sakib Hussain",
+        "role": [
+          "Pace Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "Shivang Kumar",
+        "role": [
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      },
+      {
+        "name": "TM Head",
+        "role": [
+          "Batsman",
+          "Spin Bowler"
+        ],
+        "is_captain": false
+      }
+    ]
+  }
+}
