@@ -2,11 +2,13 @@
 
 This script uses:
   - Roster reference: ``data/reference/current_rosters.json``
-  - Home venue map: ``data/reference/team_home_venues.json``
+  - Home venue map: ``data/reference/team_home_venues.json`` (per team: one venue
+    string, or a list of venue strings for multi-home franchises)
   - Aggregates: ``data/raw_aggregated_df_venue_splits.csv`` + ``data/raw_aggregated_df_season_trends.csv``
   - H2H ledger: ``data/processed/h2h_batter_bowler.parquet``
 
-It produces one JSON per (home_team, away_team) at the home team's home venue.
+It produces one JSON per (home_team, away_team, home_venue): multiple files when
+the home team lists several venues.
 
 Example:
     python -m src.scripts.generate_home_away_reports --min-h2h-balls 15
@@ -93,6 +95,60 @@ def _inputs_from_args(ns: argparse.Namespace) -> Inputs:
 
 def _load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _home_venue_list_for_franchise(franchise: str, raw: Any) -> list[str]:
+    """Normalize a ``teams`` entry from ``team_home_venues.json`` to venue names.
+
+    Args:
+        franchise: Full franchise name (roster key), for error messages only.
+        raw: A single canonical venue string, or a list of such strings.
+
+    Returns:
+        A non-empty list of venue strings (trimmed).
+
+    Raises:
+        ValueError: If ``raw`` is missing, empty, or not a string or list of strings.
+    """
+
+    if raw is None:
+        raise ValueError(f"Missing home venue mapping for franchise {franchise!r}")
+    if isinstance(raw, str):
+        s = raw.strip()
+        if not s:
+            raise ValueError(f"Empty home venue string for franchise {franchise!r}")
+        return [s]
+    if isinstance(raw, list):
+        out: list[str] = []
+        for item in raw:
+            if not isinstance(item, str) or not item.strip():
+                raise ValueError(
+                    f"Home venue list for {franchise!r} must contain non-empty strings"
+                )
+            out.append(item.strip())
+        if not out:
+            raise ValueError(f"Empty home venue list for franchise {franchise!r}")
+        return out
+    raise ValueError(
+        f"Home venues for {franchise!r} must be str or list[str], not {type(raw).__name__}"
+    )
+
+
+def _pair_report_jobs(
+    franchises: list[str], home_venues: dict[str, Any]
+) -> list[tuple[str, str, str]]:
+    """Expand (home, away) pairs into (home, away, venue) rows."""
+
+    jobs: list[tuple[str, str, str]] = []
+    for home, away in _iter_home_away(franchises):
+        if home not in home_venues:
+            raise ValueError(
+                f"Franchise {home!r} has no entry in team_home_venues.json ``teams`` map"
+            )
+        raw = home_venues[home]
+        for venue in _home_venue_list_for_franchise(home, raw):
+            jobs.append((home, away, venue))
+    return jobs
 
 
 def _safe_div(num: float, den: float) -> float:
@@ -505,17 +561,16 @@ def _pair_reports(
     fielding_season: pd.DataFrame,
 ) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
-    pairs = _iter_home_away(franchises)
+    jobs = _pair_report_jobs(franchises, home_venues)
     it = tqdm(
-        pairs,
-        total=len(pairs),
+        jobs,
+        total=len(jobs),
         desc="Generating home/away reports",
-        unit="matchup",
+        unit="report",
         dynamic_ncols=True,
         file=sys.stdout,
     )
-    for home, away in it:
-        venue = str(home_venues[home])
+    for home, away, venue in it:
         fname, payload = _build_one_report(
             home=home,
             away=away,
@@ -561,6 +616,11 @@ def generate_all(inv: Inputs, min_h2h_balls: int) -> Path:
     fielding_venue = pd.read_csv(inv.fielding_venue_splits_csv)
     fielding_season = pd.read_csv(inv.fielding_season_splits_csv)
     franchises = sorted(teams.keys())
+    for f in franchises:
+        if f not in home_venues:
+            raise ValueError(
+                f"Roster franchise {f!r} missing from team_home_venues.json ``teams`` map"
+            )
     bowler_types = _bowler_type_map(teams)
     index_rows = _pair_reports(
         franchises,

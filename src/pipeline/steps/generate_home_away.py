@@ -16,7 +16,7 @@ def run_generate_home_away(
     out_dir: Path,
     min_h2h_balls: int,
 ) -> StepResult:
-    """Generate all (home, away) matchup JSONs and an index file.
+    """Generate matchup JSONs for every (home, away) pair and each home venue.
 
     Args:
         data_dir: Repository `data/` directory containing reference JSON + exported aggregates.
