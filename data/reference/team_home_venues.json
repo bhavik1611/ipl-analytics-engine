@@ -15,8 +15,12 @@
     "Rajasthan Royals": "Sawai Mansingh Stadium",
     "Royal Challengers Bengaluru": [
       "M Chinnaswamy Stadium",
-      "Shaheed Veer Narayan Singh International Stadium"
+      "Shaheed Veer Narayan Singh International Stadium",
+      "Himachal Pradesh Cricket Association Stadium"
     ],
-    "Sunrisers Hyderabad": "Rajiv Gandhi International Stadium"
+    "Sunrisers Hyderabad": [
+      "Rajiv Gandhi International Stadium",
+      "Maharaja Yadavindra Singh International Cricket Stadium"
+    ]
   }
 }
