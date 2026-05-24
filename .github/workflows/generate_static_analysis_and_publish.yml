@@ -29,7 +29,7 @@ jobs:
       CRICSHEET_RAW_DIR: "${{ github.workspace }}/data/raw/cricsheet_ipl"
       PROCESSED_DIR: "${{ github.workspace }}/data/processed"
       LOG_LEVEL: "INFO"
-      MIN_H2H_BALLS: "${{ inputs.min_h2h_balls || '15' }}"
+      MIN_H2H_BALLS: "${{ inputs.min_h2h_balls || '1' }}"
       FORCE: "${{ inputs.force || 'true' }}"
 
     steps:
@@ -59,7 +59,13 @@ jobs:
       - name: Download Cricsheet IPL JSON zip
         run: |
           mkdir -p "${CRICSHEET_RAW_DIR}"
-          curl -L --fail --retry 3 --retry-delay 5 "${CRICSHEET_ZIP_URL}" -o ipl_json.zip
+          curl --http1.1 --location --fail-with-body --show-error \
+            --retry 3 --retry-all-errors --retry-delay 5 \
+            --user-agent "ipl-agent GitHub Actions" \
+            --header "Accept: application/zip,application/octet-stream,*/*" \
+            "${CRICSHEET_ZIP_URL}" \
+            --output ipl_json.zip
+          unzip -tq ipl_json.zip
           unzip -o ipl_json.zip -d "${CRICSHEET_RAW_DIR}"
 
       - name: Generate static reports (home_away)
