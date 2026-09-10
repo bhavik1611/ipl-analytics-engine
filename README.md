@@ -66,7 +66,7 @@ python scripts/quality_check.py
 
 ## System design
 
-See `docs/system_design.md` for the architecture and end-to-end flow.
+See `docs/superpowers/specs/2026-04-17-ipl-agent-static-reports-design.md` for the architecture and end-to-end flow.
 
 ## GitHub Actions: generate + publish to Vercel app
 
